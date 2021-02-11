@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from groups.views import home_page
+
+from groups import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_page)
+    path('authors/', views.AuthorsList.as_view(), name='authors_list'),
+    path('authors/<int:pk>/', views.AuthorDetail.as_view(), name='author_detail'),
+    path('author-delete/<int:pk>/', views.AuthorDelete.as_view(), name='author_delete'),
+    path('author-update/<int:pk>/', views.AuthorUpdate.as_view(), name='author_update'),
+    path('author-create/', views.AuthorCreate.as_view(), name='author_create')
 ]

@@ -1,9 +1,29 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from groups.models import Authors
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
+from .models import Authors
 
 # Create your views here.
-def home_page(request):
-    author = Authors.objects.last()
-    context = {'author': author}
-    return render(request, template_name='home.html', context=context)
+class AuthorsList(ListView):
+    model = Authors
+
+class AuthorCreate(CreateView):
+    model = Authors
+    success_url = "/authors/"
+    fields = ('author_name', 'author_description')
+
+class AuthorDetail(DetailView):
+    model = Authors
+
+class AuthorUpdate(UpdateView):
+    model = Authors
+    success_url = "/authors/"
+    fields = ('author_name', 'author_description')
+
+class AuthorDelete(DeleteView):
+    success_url = "/authors/"
+    model = Authors
+
+
+

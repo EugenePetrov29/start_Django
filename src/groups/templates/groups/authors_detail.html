@@ -1,0 +1,14 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Последний автор</title>
+ </head>
+ <body>
+  <h2>
+    Имя Автора: {{object.author_name}}
+  </h2>
+  <h3>{{object.author_description|default:'No description'}}</h3><br>
+  <br>
+  <a href='{% url 'authors_list' %}'>Back to authors list</a>
+ </body>
+</html>
