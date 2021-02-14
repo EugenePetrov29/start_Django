@@ -8,7 +8,7 @@
     <main class="px-3">
         <h1>Удаление автора {{object.author_name}}!!!</h1>
         <form action="" method='POST'>
-            {% csrf_token %}
-            <button type="button" class="btn btn-danger">Вы уверены?</button>
+         {% csrf_token %}
+         <button class="btn btn-danger">Вы уверены?</button>
     </main>
  {% endblock main %}
