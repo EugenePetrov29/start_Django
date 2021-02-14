@@ -1,9 +1,11 @@
-<html>
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Последний автор</title>
- </head>
- <body>
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{object.author_name}}</title>
+{% endblock title %}
+
+{% block main %}
+<main class="px-3" align="left">
   <h2>
     Имя Автора: {{object.author_name}}
   </h2>
@@ -11,4 +13,5 @@
   <br>
   <a href='{% url 'authors_list' %}'>Back to authors list</a>
  </body>
-</html>
+</main>
+{% endblock main %}

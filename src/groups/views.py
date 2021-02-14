@@ -8,6 +8,11 @@ from .models import Authors
 class AuthorsList(ListView):
     model = Authors
 
+class AuthorUpdate(UpdateView):
+    model = Authors
+    success_url = "/authors/"
+    fields = ('author_name', 'author_description')
+
 class AuthorCreate(CreateView):
     model = Authors
     success_url = "/authors/"
@@ -16,10 +21,6 @@ class AuthorCreate(CreateView):
 class AuthorDetail(DetailView):
     model = Authors
 
-class AuthorUpdate(UpdateView):
-    model = Authors
-    success_url = "/authors/"
-    fields = ('author_name', 'author_description')
 
 class AuthorDelete(DeleteView):
     success_url = "/authors/"
