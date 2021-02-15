@@ -10,6 +10,7 @@ class Authors(models.Model):
 
 class Genres(models.Model):
     genres_name = models.CharField("Жанр", max_length=50)
+    genres_description = models.TextField("Описание", null = True, blank = True)
 
     def __str__(self):
         return self.genres_name

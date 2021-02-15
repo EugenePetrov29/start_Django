@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{object.genres_name}}</title>
+{% endblock title %}
+
+{% block main %}
+<main class="px-3" align="left">
+  <h2>
+    Жанр: {{object.genres_name}}
+  </h2>
+  <h3>{{object.genres_description|default:'No description'}}</h3><br>
+  <br>
+  <a href='{% url 'genres_list' %}'>Вернуться к списку жанров</a>
+ </body>
+</main>
+{% endblock main %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Все жанры</title>
+{% endblock title %}
+    
+
+{% block main %}
+<main class="px-3">
+    <h1>Все жанры:<h1>
+    <table class="table table-dark table-hover table-bordered">
+        <tr>
+            <td>#</td>
+            <td>Жанр</td>
+            <td>Описание</td>
+            <td>Действия</td>
+        </tr>
+        {% for genre in object_list%}
+           <tr>
+                <td>{{genre.pk}}</td>
+                <td><a href={% url 'genres_detail' genre.pk%}>{{genre.genres_name}}</a></td>
+                <td>{{genre.genres_description}}</td>
+                <td>
+                    <a href={% url 'genres_delete' genre.pk%}>Delete</a>
+                    <a href={% url 'genres_update' genre.pk%}>Update</a>
+                </td>
+           </tr>
+        {% endfor %}
+    </table>
+   <div class="d-grid gap-2">
+   <a class="btn btn-light" href={% url 'genres_create'%} role="button">Добавить жанр</a>
+   </div>
+  </main>
+{% endblock main %}
+  
