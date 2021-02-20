@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{object.series_name}}</title>
+{% endblock title %}
+
+{% block main %}
+<main class="px-3" align="left">
+  <h2>
+    Серия: {{object.series_name}}
+  </h2>
+  <h3>{{object.series_description|default:'No description'}}</h3><br>
+  <br>
+  <a class="btn btn-light" href='{% url 'series_list' %}'>Вернуться к списку серий</a>
+ </body>
+</main>
+{% endblock main %}

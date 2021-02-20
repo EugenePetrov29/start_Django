@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Добавить Серию</title>
+{% endblock title %}>
+
+
+ {% block main %}
+    <main class="px-3">
+    <h1>Добавить Серию</h1>
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <table class="table table-dark table-hover table-bordered"> 
+        {{ form.as_ul }} <br>
+        </table> 
+        <button class="btn btn-light">Добавить!</button>
+    </main>
+ {% endblock main %}

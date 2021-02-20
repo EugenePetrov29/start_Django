@@ -17,12 +17,14 @@ class Genres(models.Model):
 
 class Publishing_house(models.Model):
     publishing_house_name = models.CharField("Издательство", max_length=50)
+    publishing_house_description = models.TextField("Описание", null = True, blank = True)
 
     def __str__(self):
         return self.publishing_house_name
 
 class Series(models.Model):
     series_name = models.CharField("Серия", max_length=50)
+    series_description = models.TextField("Описание", null = True, blank = True)
     
     def __str__(self):
         return self.series_name

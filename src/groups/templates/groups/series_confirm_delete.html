@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Удаление</title>
+{% endblock title %}
+
+{% block main %}
+    <main class="px-3">
+        <h1>Удаление серии: {{object.series_name}}!!!</h1>
+        <form action="" method='POST'>
+         {% csrf_token %}
+         <button class="btn btn-danger">Вы уверены?</button>
+    </main>
+ {% endblock main %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Все серии</title>
+{% endblock title %}
+
+
+{% block main %}
+<main class="px-3">
+    <h1>Все серии:<h1>
+    <table class="table table-dark table-hover table-bordered">
+        <tr>
+            <td>#</td>
+            <td>Серия</td>
+            <td>Описание</td>
+            <td>Действия</td>
+        </tr>
+        {% for series in object_list%}
+           <tr>
+                <td>{{series.pk}}</td>
+                <td><a href={% url 'series_detail' series.pk%}>{{series.series_name}}</a></td>
+                <td>{{series.series_description}}</td>
+                <td>
+                    <a href={% url 'series_delete' series.pk%}>Delete</a>
+                    <a href={% url 'series_update' series.pk%}>Update</a>
+                </td>
+           </tr>
+        {% endfor %}
+    </table>
+   <div class="d-grid gap-2">
+   <a class="btn btn-light" href={% url 'series_create'%} role="button">Добавить серию</a>
+   </div>
+  </main>
+{% endblock main %}
+  

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Издательства</title>
+{% endblock title %}
+    
+
+{% block main %}
+<main class="px-3">
+    <h1>Издательства:<h1>
+    <table class="table table-dark table-hover table-bordered">
+        <tr>
+            <td>#</td>
+            <td>Издательство</td>
+            <td>Описание</td>
+            <td>Действия</td>
+        </tr>
+        {% for ph in object_list%}
+           <tr>
+                <td>{{ph.pk}}</td>
+                <td><a href={% url 'publishing_house_detail' ph.pk%}>{{ph.publishing_house_name}}</a></td>
+                <td>{{ph.publishing_house_description}}</td>
+                <td>
+                    <a href={% url 'publishing_house_delete' ph.pk%}>Delete</a>
+                    <a href={% url 'publishing_house_update' ph.pk%}>Update</a>
+                </td>
+           </tr>
+        {% endfor %}
+    </table>
+   <div class="d-grid gap-2">
+   <a class="btn btn-light" href={% url 'publishing_house_create'%} role="button">Добавить издательство</a>
+   </div>
+  </main>
+{% endblock main %}
+  

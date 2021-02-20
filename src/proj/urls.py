@@ -19,6 +19,7 @@ from django.urls import path
 from groups import views
 
 urlpatterns = [
+    path('', views.home_page, name='home_page'),
     path('admin/', admin.site.urls),
     path('authors/', views.AuthorsList.as_view(), name='authors_list'),
     path('authors/<int:pk>/', views.AuthorDetail.as_view(), name='author_detail'),
@@ -30,4 +31,16 @@ urlpatterns = [
     path('genress/<int:pk>/', views.GenresDetail.as_view(), name='genres_detail'),
     path('genres-delete/<int:pk>/', views.GenresDelete.as_view(), name='genres_delete'),
     path('genres-update/<int:pk>/', views.GenresUpdate.as_view(), name='genres_update'),
+
+    path('publishing_house/', views.PHList.as_view(), name='publishing_house_list'),
+    path('publishing_house-create/', views.PHCreate.as_view(), name='publishing_house_create'),
+    path('publishing_houses/<int:pk>/', views.PHDetail.as_view(), name='publishing_house_detail'),
+    path('publishing_house-delete/<int:pk>/', views.PHDelete.as_view(), name='publishing_house_delete'),
+    path('publishing_house-update/<int:pk>/', views.PHUpdate.as_view(), name='publishing_house_update'),
+
+    path('series/', views.SeriesList.as_view(), name='series_list'),
+    path('series-create/', views.SeriesCreate.as_view(), name='series_create'),
+    path('seriess/<int:pk>/', views.SeriesDetail.as_view(), name='series_detail'),
+    path('series-delete/<int:pk>/', views.SeriesDelete.as_view(), name='series_delete'),
+    path('series-update/<int:pk>/', views.SeriesUpdate.as_view(), name='series_update'),
 ]
