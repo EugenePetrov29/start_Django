@@ -19,7 +19,7 @@ active
   <div class="carousel-inner">
     <div class="carousel-item active" style="margin-bottom:18px">
       <div class="row g-0">
-        <img src="{% static '/groups/img/img1.jpg' %}" class="d-block w-100" alt="..." style="max-width: 440px; margin-left:85px">
+        <img src="{% static '/groups/img/img2.jpg' %}" class="d-block w-100" alt="..." style="max-width: 440px; margin-left:85px; height:220">
       </div>
     </div>
 {% for book in books%}
@@ -56,54 +56,29 @@ active
 <h1>Новые авторы</h1>
 <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active" aling=center>
-        <div class="card mb-3" style="max-width: 440px; margin-left:85px"%>
-        <div class="row g-0">
-            <div class="col-md-4">
-            <img src="..."  alt="...">
-            </div>
-            <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Название карточки</h5>
-                <p class="card-text">///</p>
-                <p class="card-text"><small class="text-muted">///</small></p>
-            </div>
-            </div>
-        </div>
-        </div>
+    <div class="carousel-item active" style="margin-bottom:18px">
+      <div class="row g-0">
+        <img src="{% static '/groups/img/auth.jpg' %}" class="d-block w-100" alt="..." style="max-width: 440px; margin-left:85px; height:220">
+      </div>
     </div>
+{% for auth in authors%}
     <div class="carousel-item">
-        <div class="card mb-3" style="max-width: 440px; margin-left:85px"%>
+      <div class="card mb-3" style="max-width: 440px; margin-left:85px">
         <div class="row g-0">
-            <div class="col-md-4">
-            <img src="..."  alt="...">
-            </div>
-            <div class="col-md-8">
+          <div class="col-md-4">
+            <img src={% auth_img_safe auth.pk%} alt="Обложка" style="width:140; height:220">
+          </div>
+          <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">Название карточки</h5>
-                <p class="card-text">///</p>
-                <p class="card-text"><small class="text-muted">///</small></p>
+              <h5 class="card-title" style="color:black">{{auth.author_name}}</h5>
+              <p class="card-text" style="color:black">{{auth.author_description}}</p>
+              <a class="btn btn-light" href="/authors/{{auth.pk}}" >об авторе</a>
             </div>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
-    <div class="carousel-item">
-        <div class="card mb-3" style="max-width: 440px; margin-left:85px"%>
-        <div class="row g-0">
-            <div class="col-md-4">
-            <img src="..."  alt="...">
-            </div>
-            <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Название карточки</h5>
-                <p class="card-text">///</p>
-                <p class="card-text"><small class="text-muted">///</small></p>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
+{% endfor %}
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2"  data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -114,6 +89,5 @@ active
     <span class="visually-hidden">Следующий</span>
   </button>
 </div>
-<a class="btn btn-light" href='{% url 'authors_list' %}'>Список всех авторов</a>
 </main>
 {% endblock main %}

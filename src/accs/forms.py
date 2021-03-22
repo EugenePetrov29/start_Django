@@ -27,7 +27,7 @@ class LoginForm(forms.Form):
         widget=forms.HiddenInput
     )
 
-class RegisterForm(forms.ModelForm):        
+class RegisterForm(forms.ModelForm):  
     class Meta:
         model = Profile
         fields = (
@@ -36,6 +36,7 @@ class RegisterForm(forms.ModelForm):
         'address',
         'birth_date'
         )
+        
         initial = {
             'user': User.username, # This field value will be shown in the form when an unbound form is loaded.
         }

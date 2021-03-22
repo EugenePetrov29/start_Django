@@ -4,6 +4,8 @@ from groups.models import Authors
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 from .models import Authors, Genres, Publishing_house, Series, Book
 from groups import models as ref_models
+from . import forms
+from django.db.models import Q
 
 
 # Create your views here.
@@ -35,13 +37,13 @@ class AuthorsList(ListView):
 class AuthorUpdate(UpdateView):
     model = Authors
     success_url = "/authors/"
-    fields = ('author_name', 'author_description')
+    fields = ('author_img','author_name', 'author_description')
     template_name_suffix = '_update'
 
 class AuthorCreate(CreateView):
     model = Authors
     success_url = "/authors/"
-    fields = ('author_name', 'author_description')
+    fields = ('author_img','author_name', 'author_description')
 
 class AuthorDetail(DetailView):
     model = Authors
@@ -130,6 +132,43 @@ class SeriesUpdate(UpdateView):
 #КНИГИ
 class BookList(ListView):
     model = Book
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        field_sort = self.request.GET.get('field')
+        direction_sort = self.request.GET.get('direction')
+        context["field_sort"] = field_sort
+        context["direction_sort"] = direction_sort
+        query = self.request.GET.get('query')
+        context["search_form"] = forms.SearchForm(initial={
+            "query":query,
+            "field":field_sort,
+            "direction":direction_sort
+            })
+        return context
+
+    def get_ordering(self):
+        ordering_by = 'pk'
+        field_sort = self.request.GET.get('field')
+        direction_sort = self.request.GET.get('direction')
+        if field_sort and direction_sort:
+            if direction_sort == 'up':
+                direction = ""
+            else:
+                direction = "-"
+            ordering_by = f'{direction}{field_sort}'
+        return ordering_by
+    
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.request.GET.get('query')
+        if q:
+            print(q)
+            qs = qs.filter(Q(book_name__contains=q))
+        return qs
+    
+    
 
 class BookCreate(CreateView):
     model = Book

@@ -9,3 +9,8 @@ register = template.Library()
 def book_img_safe(pk):
     book = Book.objects.get(pk=pk).book_img
     return mark_safe('/static/' + str(book))
+
+@register.simple_tag
+def auth_img_safe(pk):
+    Author = Authors.objects.get(pk=pk).author_img
+    return mark_safe('/static/' + str(Author))

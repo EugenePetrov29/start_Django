@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load ref_tags %}
 
 {% block title %}
     <title>{{object.author_name}}</title>
@@ -6,12 +7,17 @@
 
 {% block main %}
 <main class="px-3" align="left">
+  <img src={% auth_img_safe object.pk%} alt="Обложка" style="width:140; height:220">}
   <h2>
     Имя Автора: {{object.author_name}}
   </h2>
   <h3>{{object.author_description|default:'No description'}}</h3><br>
   <br>
-  <a href='{% url 'authors_list' %}'>Back to authors list</a>
+  {% if user.is_staff %}
+  <a class="btn btn-light" href='{% url 'authors_list' %}'>Вернуться к списку авторов</a>
+  {% else %}
+  <a class="btn btn-light" href='{% url 'home_page_list' %}'>Вернуться к домашней странице</a>
+  {% endif %}
  </body>
 </main>
 {% endblock main %}

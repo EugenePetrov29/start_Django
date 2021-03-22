@@ -7,7 +7,12 @@ import datetime
 
 class Authors(models.Model):
     author_name = models.CharField("Имя автора", max_length=50)
-    author_description = models.TextField("Краткая биография", null = True, blank = True)  
+    author_description = models.TextField("Краткая биография", null = True, blank = True) 
+    author_img = models.ImageField(
+        upload_to = 'images',
+        null = True, 
+        blank = True
+        ) 
 
     def __str__(self):
         return self.author_name

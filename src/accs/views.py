@@ -31,6 +31,7 @@ class Profile(CreateView):
     model = models.Profile
     form_class = forms.RegisterForm
     success_url = "/"
+    
 
 class Logout(views.LogoutView):
     template_name = ''
@@ -47,6 +48,8 @@ class ProfileUpdate(UpdateView):
         'address',
         'birth_date',
         )
+    
+    
     def get_success_url(self):
         return reverse('profile_detail', args=[self.kwargs['pk']])
     
