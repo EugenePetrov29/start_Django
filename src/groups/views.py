@@ -2,12 +2,29 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from groups.models import Authors
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from .models import Authors, Genres, Publishing_house, Series
+from .models import Authors, Genres, Publishing_house, Series, Book
+from groups import models as ref_models
+
 
 # Create your views here.
-def home_page(request):
+
+
+class HomePage(ListView):
+    model = Book
+    template_name ='groups/homepage_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["books"] = ref_models.Book.objects.all().order_by("-pk")[:5]
+        context["authors"] = ref_models.Authors.objects.all().order_by("-pk")[:5]
+        return context
+    
+    
+
+#Страница со словарями
+def slovary(request):
     context = {}
-    return render(request, template_name="home.html", context=context)
+    return render(request, template_name="slovary.html", context=context)
 
 
 
@@ -106,4 +123,47 @@ class SeriesUpdate(UpdateView):
     model = Series
     success_url = "/series/"
     fields = ('series_name', 'series_description')
+    template_name_suffix = '_update'
+
+
+
+#КНИГИ
+class BookList(ListView):
+    model = Book
+
+class BookCreate(CreateView):
+    model = Book
+    success_url = "/book/"
+    fields = (
+        'book_img',
+        'book_name',
+        'book_desc',
+        'book_genre',  
+        'book_auth',
+        'book_ph',
+        'book_sery',
+        'price'
+    )
+    template_name_field = 'book'
+
+class BookDetail(DetailView):
+    model = Book
+
+class BookDelete(DeleteView):
+    success_url = "/book/"
+    model = Book
+
+class BookUpdate(UpdateView):
+    model = Book
+    success_url = "/book/"
+    fields = (
+        'book_img',
+        'book_name',
+        'book_desc',
+        'book_genre',  
+        'book_auth',
+        'book_ph',
+        'book_sery',
+        'price'
+    )
     template_name_suffix = '_update'

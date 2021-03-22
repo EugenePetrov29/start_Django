@@ -25,7 +25,7 @@ SECRET_KEY = 'm(^g85zh=us8sm9wpj%+*2mv2844+w0kzdwmppk1(9f8rnftog'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['Zhenya29.pythonanywhere.com']
+#ALLOWED_HOSTS = ['Zhenya29.pythonanywhere.com']
 
 
 # Application definition
@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'groups']
+    'groups',
+    'crispy_forms',
+    'accs',
+    'extra_views',
+    'cart',
+    'order'
+    ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -118,3 +124,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/Zhenya29/start_Django/static'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

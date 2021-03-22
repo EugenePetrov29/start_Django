@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+
+<main class="px-3">
+    <h1>Корзина<h1><hr>
+    <form action="{% url 'cart:recalculate-cart' %}" method="GET">
+    <table class="table table-dark table-hover table-bordered">
+        <tr>
+            <td>Название книги</td>
+            <td>Цена за шт./бел.руб</td>
+            <td>Колличество</td>
+            <td>Итого</td>
+        </tr>
+        {% for book_in_cart in object.goods.all%}
+           <tr>
+                <td>{{book_in_cart.book.book_name}}</td>
+                <td>{{book_in_cart.price}}</td>
+                <td><input type="number" min="0" name="book_in_cart_{{book_in_cart.pk}}" value="{{book_in_cart.quantity}}"></td>
+                <td>{{book_in_cart.total_price}}</td>
+           </tr>
+        {% endfor %}
+           <tr>
+                <td colspan="3">Итого</td>
+                <td colspan="3">{{object.total_summ}}</td>
+           </tr>
+    </table>
+    <button type="submit" name="btn" class="btn btn-success" value="recalculate">Пересчетать</button>
+    <button type="submit" name="btn" class="btn btn-danger" value="checkout">Оформить заказ</button>
+    </form>
+</main>
+{% endblock main %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load ref_tags %}
+
+{% block title %}
+    <title>{{object.book_name}}</title>
+{% endblock title %}
+
+{% block main %}
+<main class="px-3" align="left">
+  <h2>
+    Книга: {{object.book_name}}
+  </h2>
+  <img src={% book_img_safe book.pk%} alt="Обложка" style="width:140; height:220">
+  <h3>{{object.book_desc|default:'No description'}}</h3><br>
+  Жанр: {{object.book_genre|default:'No genre'}}<br>
+  Серия: {{object.book_sery|default:'No sery'}}<br>
+  Автор: {{object.book_auth|default:'No author'}}<br>
+  Издательство: {{object.book_ph|default:'No publishing house'}}<br>
+  Дата добавления в магазин: {{object.book_add}}<br>
+  <br>
+  <a class="btn btn-light" href='{% url 'book_list' %}'>Вернуться к списку книг</a>
+ </body>
+</main>
+{% endblock main %}

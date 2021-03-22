@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Все справочники</title>
+{% endblock title %}
+
+{% block dict %}
+active
+{% endblock dict %}
+   
+
+{% block main %}
+<main class="px-3">
+    <h1>Все Справочники:<h1><br>
+    
+   
+   <div class="d-grid gap-2">
+   <a class="btn btn-light" href={% url 'authors_list'%} role="button">Авторы</a>
+   </div><br>
+   <div class="d-grid gap-2">
+   <a class="btn btn-light" href={% url 'genres_list'%} role="button">Жанры</a>
+   </div><br>
+   <div class="d-grid gap-2">
+   <a class="btn btn-light" href={% url 'publishing_house_list'%} role="button">Издательства</a>
+   </div><br>
+   <div class="d-grid gap-2">
+   <a class="btn btn-light" href={% url 'series_list'%} role="button">Серии</a>
+   </div><br>
+
+ </main>
+{% endblock main %}
+  

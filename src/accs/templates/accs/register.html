@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>Создание профиля</title>
+{% endblock title %}
+
+{% block main %}
+    <h1>Создание пользователя</h1>
+    <p>Пожалуйста, заполните все поля</p>
+    <form action="." method="post">
+        {{ user_form|crispy }}
+        {% csrf_token %}<br>
+        <p><input type="submit" value="Создать профиль"></p>
+    </form>
+{% endblock main%}

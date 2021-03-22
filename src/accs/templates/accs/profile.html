@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load ref_tags %}
+
+{% block title %}
+    <title>{{object.user}}</title>
+{% endblock title %}
+
+{% block main %}
+<main class="px-3" align="left">
+  <h2>
+    Пользователь: {{object.user}}
+  </h2>
+  <img src={% book_img_safe book.pk%} alt="Обложка" style="width:140; height:220">
+  <h3>{{object.phone|default:'No description'}}</h3><br>
+  Жанр: {{object.address|default:'No genre'}}<br>
+  Серия: {{object.birth_date|default:'No sery'}}<br>
+  <br>
+  <a class="btn btn-light" href='{% url 'book_list' %}'>Вернуться к списку книг</a>
+ </body>
+</main>
+{% endblock main %}

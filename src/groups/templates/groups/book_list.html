@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Все книги</title>
+{% endblock title %}
+
+
+{% block main %}
+<main class="px-3">
+    <h1>Все книги:<h1>
+    <table class="table table-dark table-hover table-bordered">
+        <tr>
+            <td>#</td>
+            <td>Название</td>
+            <td>Описание</td>
+            <td>Жанр</td>
+            <td>Серия</td>
+            <td>Автор</td>
+            <td>Издательство</td>
+            <td>Цена</td>
+            <td>Действия</td>
+        </tr>
+        {% for book in object_list%}
+           <tr>
+                <td>{{book.pk}}</td>
+                <td><a href={% url 'book_detail' book.pk%}>{{book.book_name}}</a></td>
+                <td>{{book.book_desc}}</td>
+                <td>{{book.book_genre}}</td>
+                <td>{{book.book_sery}}</td>
+                <td>{{book.book_auth}}</td>
+                <td>{{book.book_ph}}</td>
+                <td>{{book.price}}</td>
+                <td>
+                    <a href={% url 'book_delete' book.pk%}>Delete</a>
+                    <a href={% url 'book_update' book.pk%}>Update</a>
+                </td>
+           </tr>
+        {% endfor %}
+    </table>
+   <div class="d-grid gap-2">
+   <a class="btn btn-light" href={% url 'book_create'%} role="button">Добавить книгу</a>
+   </div>
+  </main>
+{% endblock main %}
+  

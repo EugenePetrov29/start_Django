@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load ref_tags %}
+
+{% block title %}
+    <title>{{user}}</title>
+{% endblock title %}
+{% block user %}
+active
+{% endblock user %}
+
+{% block main %}
+<main class="px-3" align="left">
+  <h2>
+    Пользователь: {{user}}
+  </h2>
+  Дата рождения: {{object.birth_date|default:'No author'}}<br>
+  Адрес: {{object.address|default:'No genre'}}<br>
+  Телефон: {{object.phone|default:'No sery'}}<br>
+  <br>
+  <a class="btn btn-light" href="/accs/update/{{user.pk}}">Редактировать профиль</a>
+  <a class="btn btn-light" href='{% url 'home_page_list' %}'>Домашняя страница</a>
+ </body>
+</main>
+{% endblock main %}

@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load ref_tags %}
 
 {% block title %}
     <title>AllBooks</title>
@@ -13,28 +15,32 @@ active
 <br>
 <main class="px-3">
 <h1>AllBooks - Твоё решение для покупки книги!<h1><br>
-'{{book1.book_name}}'
-<h1>Новинки Книг!</h1>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-{% for book in last_books%}
   <div class="carousel-inner">
-    <div class="carousel-item active" aling=center>
-        <div class="card mb-3" style="max-width: 440px; margin-left:85px"%>
+    <div class="carousel-item active" style="margin-bottom:18px">
+      <div class="row g-0">
+        <img src="{% static '/groups/img/img1.jpg' %}" class="d-block w-100" alt="..." style="max-width: 440px; margin-left:85px">
+      </div>
+    </div>
+{% for book in books%}
+    <div class="carousel-item">
+      <div class="card mb-3" style="max-width: 440px; margin-left:85px">
         <div class="row g-0">
-            <div class="col-md-4">
-            <img src="..."  alt="...">
-            </div>
-            <div class="col-md-8">
+          <div class="col-md-4">
+            <img src={% book_img_safe book.pk%} alt="Обложка" style="width:140; height:220">
+          </div>
+          <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">{{book.book_name}}</h5>
-                <p class="card-text">///</p>
-                <p class="card-text"><small class="text-muted">///</small></p>
+              <h5 class="card-title" style="color:black">{{book.book_name}}</h5>
+              <p class="card-text" style="color:black">{{book.book_desc}}</p>
+              <a class="btn btn-light" href="{% url 'cart:add-to-cart' %}?book={{book.pk}}">Добавить в карзину</a>
             </div>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
 {% endfor %}
+  </div>
     
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
